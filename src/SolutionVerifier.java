@@ -37,6 +37,12 @@ public class SolutionVerifier {
     }
 
     public boolean verify(String steps) {
+        if(steps == null || steps.isEmpty() || steps.contains("no path")) {
+            System.out.println("No path given. Unable to verify.");
+            return false;
+        }
+
+
         printBoard();
         boolean correct = verifySolution(steps);
         printBoard();
