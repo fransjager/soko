@@ -5,8 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SolutionVerifier {
-    char[][] board;
-    Coordinate playerCoordinate = new Coordinate();
+    private char[][] board;
+    private Coordinate playerCoordinate = new Coordinate();
 
     public void readInputFile(String url) throws IOException {
         List<String> input = new ArrayList<>();
@@ -47,10 +47,10 @@ public class SolutionVerifier {
         boolean correct = verifySolution(steps);
         printBoard();
         if (!correct) {
-            System.out.println("Solution: " + steps + " is not correct...");
+            System.out.println("Solution: " + System.lineSeparator() + steps + System.lineSeparator() + "is not correct...");
             return false;
         } else {
-            System.out.println("Solution: " + steps + " is correct!!");
+            System.out.println("Solution: " + System.lineSeparator() + steps + System.lineSeparator() + "is correct!!");
         }
 
         return true;
@@ -72,6 +72,10 @@ public class SolutionVerifier {
     }
 
     private boolean verifySolution(String steps) {
+        if ("no path".equals(steps)) {
+            return false;
+        }
+
         Coordinate tmpCoordinate = new Coordinate();
 
         for (Character character : steps.toCharArray()) {

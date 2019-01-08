@@ -1,7 +1,7 @@
 public class GameSolver {
-    GameBoard gameBoard;
-    State initialState;
-    boolean isDebug = true;
+    private final GameBoard gameBoard;
+    private final State initialState;
+    private final boolean isDebug = true;
 
     public GameSolver(GameBoard gameBoard, State initialState) {
         this.initialState = initialState;
@@ -11,13 +11,40 @@ public class GameSolver {
     public String solve() {
         long start = 0;
 
-        Search choice = Search.IDA_STAR;
+        final Search choice = Search.IDA_STAR;
 
-        Node solved;
-        Algorithm algorithm;
-        /**
+        /*
          * [1] Choose main search algorithm
          */
+        final Algorithm algorithm = getAlgorithm(choice, gameBoard, initialState);
+        algorithm.isDebug = isDebug;
+
+        /*
+         * [2] Calculate static dead locks
+         */
+        DeadlockManager.calculateStaticDeadSquares(gameBoard);
+
+        /*
+         *  [3] Solve the board
+         */
+        if (isDebug)
+            start = System.currentTimeMillis();
+
+        final Node solved = algorithm.solve();
+        if (isDebug) {
+            final long stop = System.currentTimeMillis();
+            System.out.println("The search took: " + (stop - start) + " ms");
+            System.out.println("Found " + DeadlockManager.deadState.size() + " dead states");
+            System.out.println("Found " + DeadlockManager.deadSquares.size() + " dead squares");
+        }
+
+        return solved != null ? getSolution(solved) : "no path";
+    }
+
+    private static Algorithm getAlgorithm(final Search choice,
+                                          final GameBoard gameBoard,
+                                          final State initialState) {
+        Algorithm algorithm;
         switch (choice) {
             case A_STAR:
                 algorithm = new AstarSearch(gameBoard, initialState);
@@ -34,35 +61,12 @@ public class GameSolver {
             default:
                 algorithm = new IDAstarSearch(gameBoard, initialState);
         }
-        algorithm.isDebug = isDebug;
-
-        /**
-         * [2] Calculate static dead locks
-         */
-        DeadlockManager.calculateStaticDeadSquares(gameBoard);
-
-        /**
-         *  [3] Solve the board
-         */
-        if (isDebug)
-            start = System.currentTimeMillis();
-        long stop;
-        solved = algorithm.solve();
-        if (isDebug) {
-            stop = System.currentTimeMillis();
-            System.out.println("The search took: " + (stop - start) + " ms");
-            System.out.println("Found " + DeadlockManager.deadState.size() + " dead states");
-            System.out.println("Found " + DeadlockManager.deadSquares.size() + " dead squares");
-        }
-
-        String solution = "";
-        solution = solved != null ? getSolution(solved) : "no path";
-        return solution;
+        return algorithm;
     }
 
 
-    protected String getSolution(Node node) {
-        StringBuilder stringBuilder = new StringBuilder();
+    private String getSolution(final Node node) {
+        final StringBuilder stringBuilder = new StringBuilder();
         Node currentNode = node;
         while (currentNode.parent != null) {
             stringBuilder.append(currentNode.state.move);
