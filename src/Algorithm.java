@@ -2,11 +2,10 @@ import java.util.HashSet;
 import java.util.SortedSet;
 import java.util.TreeSet;
 
-public abstract class Algorithm {
-
-    GameBoard gameBoard;
-    State initialState;
-    CoordinatePool coordinatePool = new CoordinatePool(1000);
+public abstract class  Algorithm {
+    final GameBoard gameBoard;
+    final State initialState;
+    private final CoordinatePool coordinatePool = new CoordinatePool(1000);
     boolean isDebug = false;
 
 
@@ -23,22 +22,7 @@ public abstract class Algorithm {
         tmpCoordinate.x = state.playerPosition.x;
         tmpCoordinate.y = state.playerPosition.y;
 
-        switch (direction) {
-            case UP:
-                tmpCoordinate.y -= 1;
-                break;
-            case DOWN:
-                tmpCoordinate.y += 1;
-                break;
-            case LEFT:
-                tmpCoordinate.x -= 1;
-                break;
-            case RIGHT:
-                tmpCoordinate.x += 1;
-                break;
-            default:
-                // Nothing
-        }
+        move(direction, tmpCoordinate);
         HashSet wallCoordinates = gameBoard.wallCoordinates;
 
         if (wallCoordinates.contains(tmpCoordinate)) {
@@ -78,22 +62,7 @@ public abstract class Algorithm {
         tmpCoordinate.x = boxCoordinate.x;
         tmpCoordinate.y = boxCoordinate.y;
 
-        switch (direction) {
-            case UP:
-                tmpCoordinate.y -= 1;
-                break;
-            case DOWN:
-                tmpCoordinate.y += 1;
-                break;
-            case LEFT:
-                tmpCoordinate.x -= 1;
-                break;
-            case RIGHT:
-                tmpCoordinate.x += 1;
-                break;
-            default:
-                // Nothing
-        }
+        move(direction, tmpCoordinate);
 
         HashSet wallCoordinates = gameBoard.wallCoordinates;
         if (wallCoordinates.contains(tmpCoordinate)) {
@@ -110,6 +79,25 @@ public abstract class Algorithm {
         return new Coordinate(tmpCoordinate.x, tmpCoordinate.y);
     }
 
+    private void move(Direction direction, Coordinate tmpCoordinate) {
+        switch (direction) {
+            case UP:
+                tmpCoordinate.y -= 1;
+                break;
+            case DOWN:
+                tmpCoordinate.y += 1;
+                break;
+            case LEFT:
+                tmpCoordinate.x -= 1;
+                break;
+            case RIGHT:
+                tmpCoordinate.x += 1;
+                break;
+            default:
+                // Nothing
+        }
+    }
+
     protected boolean isCompleted(State state) {
         boolean onGoal = false;
         for (Coordinate goal : gameBoard.goalCoordinates) {
@@ -117,7 +105,6 @@ public abstract class Algorithm {
             for (Coordinate box : state.boxPositions) {
                 if (goal.x == box.x && goal.y == box.y) {
                     onGoal = true;
-                    continue;
                 }
             }
 

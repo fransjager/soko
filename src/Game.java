@@ -5,17 +5,17 @@ import java.util.*;
 
 public class Game {
     // Solver
-    GameSolver solver;
+    private GameSolver solver;
     // Changing data
-    SortedSet<Coordinate> boxCoordinates;
-    Coordinate playerCoordinate;
+    private SortedSet<Coordinate> boxCoordinates;
+    private Coordinate playerCoordinate;
     // Static data
-    GameBoard board;
-    HashSet<Coordinate> goalCoordinates;
-    HashSet<Coordinate> wallCoordinates;
-    HashSet<Coordinate> emptyCoordinates;
+    private GameBoard board;
+    private HashSet<Coordinate> goalCoordinates;
+    private HashSet<Coordinate> wallCoordinates;
+    private HashSet<Coordinate> emptyCoordinates;
 
-    boolean isDebug = false;
+    private boolean isDebug = false;
 
     public Game(String url) {
         try {

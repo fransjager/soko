@@ -1,12 +1,9 @@
-import java.util.ArrayList;
-import java.util.List;
 
 public class Node {
     Node parent;
     State state;
     boolean visited = false;
     int cost = Integer.MAX_VALUE;
-    List<Node> neighbours = new ArrayList<>();
 
     public Node(State state) {
         this.state = state;

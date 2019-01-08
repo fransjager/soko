@@ -1,8 +1,8 @@
 import java.util.SortedSet;
 
 public class State {
-    SortedSet<Coordinate> boxPositions;
-    Coordinate playerPosition;
+    final SortedSet<Coordinate> boxPositions;
+    final Coordinate playerPosition;
     boolean deadlocked = false;
     char move = ' ';
 
@@ -22,7 +22,7 @@ public class State {
     @Override
     public int hashCode() {
         int hash = 5381;
-        for (Coordinate coordinate : boxPositions) {
+        for (final Coordinate coordinate : boxPositions) {
             //hash = ((hash << 5) + hash) + coordinate.hashCode();
             hash = (hash * 33) ^ coordinate.hashCode();
         }
@@ -33,7 +33,7 @@ public class State {
     public String toString() {
         int boxNbr = 1;
         StringBuilder stringBuilder = new StringBuilder();
-        for (Coordinate box : boxPositions) {
+        for (final Coordinate box : boxPositions) {
             stringBuilder.append("Box[");
             stringBuilder.append(boxNbr);
             stringBuilder.append("] ");

@@ -1,4 +1,7 @@
 public class CalculationUtil {
+    private CalculationUtil() {
+    }
+
     private static int BOX_PUSH_WEIGHT = 5;
     private static int BOX_GOAL_WEIGHT = 25;
 
