@@ -1,6 +1,7 @@
 public class CalculationUtil {
     private static int BOX_PUSH_WEIGHT = 5;
     private static int BOX_GOAL_WEIGHT = 25;
+
     /**
      * Very simple lower bound calculations.
      */
@@ -10,12 +11,12 @@ public class CalculationUtil {
         }
 
         int distance = 0;
-        for(Coordinate box : state.boxPositions) {
+        for (Coordinate box : state.boxPositions) {
             distance += manhattanDistance(state.playerPosition, box);
         }
 
-        for(Coordinate box : state.boxPositions) {
-            for(Coordinate goal : board.goalCoordinates) {
+        for (Coordinate box : state.boxPositions) {
+            for (Coordinate goal : board.goalCoordinates) {
                 int manhattan = manhattanDistance(goal, box);
                 distance += manhattan * BOX_PUSH_WEIGHT;
                 if (board.isGoal(box) && DeadlockManager.isDeadLocked(board, box, state)) {

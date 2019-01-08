@@ -1,6 +1,5 @@
 import java.util.ArrayDeque;
 import java.util.HashSet;
-import java.util.Stack;
 
 public class DepthFirstSearch extends Algorithm {
 
@@ -24,7 +23,7 @@ public class DepthFirstSearch extends Algorithm {
         stack.push(root);
 
         // Make sure we didn't receive an already solved board..
-        if(isCompleted(initialState)) {
+        if (isCompleted(initialState)) {
             return root;
         }
 
@@ -43,7 +42,7 @@ public class DepthFirstSearch extends Algorithm {
                         stack.push(child);
 
                         if (isCompleted(state)) { // Return the end state upon completion. Backtrace with parents..
-                            if(isDebug) {
+                            if (isDebug) {
                                 System.out.println("Created " + nodesCreated + " nodes and a goal was found.");
                             }
                             return child;

@@ -1,11 +1,10 @@
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.Stack;
 
 public class IDAstarSearch extends Algorithm {
 
-    private final int FOUND     = Integer.MIN_VALUE;
+    private final int FOUND = Integer.MIN_VALUE;
     private final int NOT_FOUND = Integer.MAX_VALUE;
 
     public IDAstarSearch(GameBoard gameBoard, State initialState) {
@@ -28,8 +27,8 @@ public class IDAstarSearch extends Algorithm {
             return currentNode;
         }
 
-        while(true) {
-            bound = search(stack,visited, 0, bound);
+        while (true) {
+            bound = search(stack, visited, 0, bound);
 
             if (bound == FOUND) {
                 return stack.peek();
@@ -73,7 +72,7 @@ public class IDAstarSearch extends Algorithm {
             stack.push(n);
             n.parent = node;
             visited.add(n);
-            int successorBound =  search(stack, visited, cost + 1, bound);
+            int successorBound = search(stack, visited, cost + 1, bound);
 
             if (successorBound == FOUND) {
                 return FOUND;

@@ -24,11 +24,11 @@ public class SolutionVerifier {
 
         }
         board = new char[input.size()][maxRowLength];
-        for(int i = 0; i < input.size(); i++) {
+        for (int i = 0; i < input.size(); i++) {
             String row = input.get(i);
             board[i] = row.toCharArray();
             for (int j = 0; j < board[i].length; j++) {
-                if('@' == row.charAt(j) || '+' == row.charAt(j)){
+                if ('@' == row.charAt(j) || '+' == row.charAt(j)) {
                     playerCoordinate.x = j;
                     playerCoordinate.y = i;
                 }
@@ -37,7 +37,7 @@ public class SolutionVerifier {
     }
 
     public boolean verify(String steps) {
-        if(steps == null || steps.isEmpty() || steps.contains("no path")) {
+        if (steps == null || steps.isEmpty() || steps.contains("no path")) {
             System.out.println("No path given. Unable to verify.");
             return false;
         }
@@ -60,7 +60,7 @@ public class SolutionVerifier {
         for (int y = 0; y < board.length; y++) {
             char[] xArray = board[y];
             for (int x = 0; x < xArray.length; x++) {
-                if(xArray[x] != '@' && DeadlockManager.isDeadSquare(new Coordinate(x,y))) {
+                if (xArray[x] != '@' && DeadlockManager.isDeadSquare(new Coordinate(x, y))) {
                     System.out.print('x');
                 } else {
                     System.out.print(xArray[x]);
@@ -95,7 +95,7 @@ public class SolutionVerifier {
                 default:
                     continue;
             }
-            if(!move(tmpCoordinate, character)) {
+            if (!move(tmpCoordinate, character)) {
                 return false;
             }
         }
@@ -115,19 +115,19 @@ public class SolutionVerifier {
                 case 'U':
                     boxCoordinate.x = tmpCoordinate.x;
                     boxCoordinate.y = tmpCoordinate.y - 1;
-                break;
+                    break;
                 case 'D':
                     boxCoordinate.x = tmpCoordinate.x;
                     boxCoordinate.y = tmpCoordinate.y + 1;
-                break;
+                    break;
                 case 'R':
                     boxCoordinate.x = tmpCoordinate.x + 1;
                     boxCoordinate.y = tmpCoordinate.y;
-                break;
+                    break;
                 case 'L':
                     boxCoordinate.x = tmpCoordinate.x - 1;
                     boxCoordinate.y = tmpCoordinate.y;
-                break;
+                    break;
                 default:
                     //Nothing
             }

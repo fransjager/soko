@@ -2,6 +2,7 @@ enum GameObject {
     WALL('#'), EMPTY(' '), BOX('$'), PLAYER('@'), PLAYER_ON_GOAL('+'), BOX_ON_GOAL('*'), GOAL('.'), UNDEFINED('U');
 
     private final char c;
+
     GameObject(char c) {
         this.c = c;
     }

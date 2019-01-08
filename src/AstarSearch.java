@@ -21,7 +21,6 @@ public class AstarSearch extends Algorithm {
         queue.add(currentNode);
 
 
-
         while (!queue.isEmpty()) {
             Node node = queue.poll();
 
@@ -38,7 +37,7 @@ public class AstarSearch extends Algorithm {
                 if (state != null) { // If a next state is found
                     Node child = new Node(state);
                     nodesCreated++;
-                    if(state.deadlocked) {
+                    if (state.deadlocked) {
                         continue;
                     }
 
@@ -48,7 +47,7 @@ public class AstarSearch extends Algorithm {
                         child.cost += 1;
                         queue.add(child);
                     } else if (!visited.contains(child) && queue.contains(node)) {
-                        if ( queue.removeIf(n -> n.equals(child) && child.cost <= n.cost) ) {
+                        if (queue.removeIf(n -> n.equals(child) && child.cost <= n.cost)) {
                             queue.add(child);
                             nodesCreated++;
                             child.parent = node;

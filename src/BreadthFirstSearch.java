@@ -25,7 +25,7 @@ public class BreadthFirstSearch extends Algorithm {
         queue.push(root);
 
         // Make sure we didn't receive an already solved board..
-        if(isCompleted(initialState)) {
+        if (isCompleted(initialState)) {
             return root;
         }
 

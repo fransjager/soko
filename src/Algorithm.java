@@ -2,7 +2,7 @@ import java.util.HashSet;
 import java.util.SortedSet;
 import java.util.TreeSet;
 
-public abstract class  Algorithm {
+public abstract class Algorithm {
 
     GameBoard gameBoard;
     State initialState;
@@ -59,7 +59,7 @@ public abstract class  Algorithm {
 
 
         SortedSet<Coordinate> hashSet = new TreeSet<>();
-        state.boxPositions.forEach(c -> hashSet.add(new Coordinate(c.x,c.y)));
+        state.boxPositions.forEach(c -> hashSet.add(new Coordinate(c.x, c.y)));
         State newState = new State(hashSet, new Coordinate(tmpCoordinate.x, tmpCoordinate.y));
         newState.deadlocked = false;
         newState.move = direction.value();
@@ -112,7 +112,7 @@ public abstract class  Algorithm {
 
     protected boolean isCompleted(State state) {
         boolean onGoal = false;
-        for (Coordinate goal : gameBoard.goalCoordinates ) {
+        for (Coordinate goal : gameBoard.goalCoordinates) {
             onGoal = false;
             for (Coordinate box : state.boxPositions) {
                 if (goal.x == box.x && goal.y == box.y) {

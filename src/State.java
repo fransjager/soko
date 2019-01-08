@@ -6,7 +6,7 @@ public class State {
     boolean deadlocked = false;
     char move = ' ';
 
-    public State(SortedSet<Coordinate> boxPositions, Coordinate playerPosition)  {
+    public State(SortedSet<Coordinate> boxPositions, Coordinate playerPosition) {
         this.boxPositions = boxPositions;
         this.playerPosition = playerPosition;
     }
@@ -22,7 +22,7 @@ public class State {
     @Override
     public int hashCode() {
         int hash = 5381;
-        for(Coordinate coordinate : boxPositions) {
+        for (Coordinate coordinate : boxPositions) {
             //hash = ((hash << 5) + hash) + coordinate.hashCode();
             hash = (hash * 33) ^ coordinate.hashCode();
         }
@@ -33,7 +33,7 @@ public class State {
     public String toString() {
         int boxNbr = 1;
         StringBuilder stringBuilder = new StringBuilder();
-        for(Coordinate box : boxPositions) {
+        for (Coordinate box : boxPositions) {
             stringBuilder.append("Box[");
             stringBuilder.append(boxNbr);
             stringBuilder.append("] ");

@@ -51,24 +51,24 @@ public class Game {
     }
 
     public void readInput(List<String> input) {
-        boxCoordinates  = new TreeSet<>();
+        boxCoordinates = new TreeSet<>();
         goalCoordinates = new HashSet<>();
         wallCoordinates = new HashSet<>();
         emptyCoordinates = new HashSet<>();
 
         char[][] asciiBoard = new char[input.size()][];
-        for(int i = 0; i < input.size(); i++) {
+        for (int i = 0; i < input.size(); i++) {
             String row = input.get(i);
             asciiBoard[i] = row.toCharArray();
             for (int j = 0; j < row.length(); j++) {
                 GameObject current = GameObject.getEnum(row.charAt(j));
                 if (isDebug)
-                    System.out.println("Found " + row.charAt(j) +" at (" + j + "," + i + ")" );
+                    System.out.println("Found " + row.charAt(j) + " at (" + j + "," + i + ")");
                 switch (current) {
                     case BOX:
                         boxCoordinates.add(new Coordinate(j, i));
                         asciiBoard[i][j] = ' ';
-                        emptyCoordinates.add(new Coordinate(j,i));
+                        emptyCoordinates.add(new Coordinate(j, i));
                         break;
                     case GOAL:
                         goalCoordinates.add(new Coordinate(j, i));
@@ -76,7 +76,7 @@ public class Game {
                     case PLAYER:
                         playerCoordinate = new Coordinate(j, i);
                         asciiBoard[i][j] = ' ';
-                        emptyCoordinates.add(new Coordinate(j,i));
+                        emptyCoordinates.add(new Coordinate(j, i));
                         break;
                     case PLAYER_ON_GOAL:
                         playerCoordinate = new Coordinate(j, i);
@@ -92,15 +92,15 @@ public class Game {
                         wallCoordinates.add(new Coordinate(j, i));
                         break;
                     case EMPTY:
-                        emptyCoordinates.add(new Coordinate(j,i));
+                        emptyCoordinates.add(new Coordinate(j, i));
                         break;
                     default:
                         if (isDebug)
-                            System.out.println("Found " + row.charAt(j) +"?");
+                            System.out.println("Found " + row.charAt(j) + "?");
                 }
             }
         }
 
-        board = new GameBoard(wallCoordinates, goalCoordinates,emptyCoordinates, asciiBoard);
+        board = new GameBoard(wallCoordinates, goalCoordinates, emptyCoordinates, asciiBoard);
     }
 }

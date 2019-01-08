@@ -7,15 +7,16 @@ public class GameBoard {
     char[][] board;
     int maxY;
     int maxX;
+
     public GameBoard(HashSet<Coordinate> wallCoordinates, HashSet<Coordinate> goalCoordinates, HashSet<Coordinate> emptyCoordinates, char[][] board) {
-        this.wallCoordinates  = wallCoordinates;
-        this.goalCoordinates  = goalCoordinates;
+        this.wallCoordinates = wallCoordinates;
+        this.goalCoordinates = goalCoordinates;
         this.emptyCoordinates = emptyCoordinates;
         this.board = board;
 
         maxY = board.length - 1;
         maxX = 0;
-        for(char[] x : board) {
+        for (char[] x : board) {
             if (maxX < x.length) {
                 maxX = x.length - 1;
             }

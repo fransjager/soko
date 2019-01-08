@@ -34,7 +34,7 @@ public final class DeadlockManager {
                 for (Direction direction : Direction.values()) { // For all directions
                     Coordinate nextMove = getNextMove(direction, coordinate1, gameBoard);
                     if (nextMove != null && !visited.contains(nextMove) && !deadSquares.contains(nextMove)) { // If a next state is found
-                        if(!visited.contains(nextMove) && !deadSquares.contains(nextMove)) {
+                        if (!visited.contains(nextMove) && !deadSquares.contains(nextMove)) {
                             visited.add(nextMove);
                             stack.push(nextMove);
 
@@ -45,7 +45,7 @@ public final class DeadlockManager {
                         }
                     }
                 }
-        }
+            }
 
             if (!found) {
                 //If we didn't find it. We add all tiles we visited.
@@ -82,7 +82,7 @@ public final class DeadlockManager {
                 }
                 break;
             case LEFT:
-                if (gameBoard.maxX < coordinate.x + 1 || 0 > coordinate.x - 1 || (gameBoard.board[coordinate.y].length - 1) < (coordinate.x + 1) ) {
+                if (gameBoard.maxX < coordinate.x + 1 || 0 > coordinate.x - 1 || (gameBoard.board[coordinate.y].length - 1) < (coordinate.x + 1)) {
                     return null;
                 }
 
@@ -95,7 +95,7 @@ public final class DeadlockManager {
                     return null;
                 }
 
-                if (GameObject.getEnum(gameBoard.board[coordinate.y][coordinate.x - 1]) != GameObject.WALL  && GameObject.getEnum(gameBoard.board[coordinate.y][coordinate.x + 1]) != GameObject.WALL) {
+                if (GameObject.getEnum(gameBoard.board[coordinate.y][coordinate.x - 1]) != GameObject.WALL && GameObject.getEnum(gameBoard.board[coordinate.y][coordinate.x + 1]) != GameObject.WALL) {
                     return new Coordinate(coordinate.x + 1, coordinate.y);
                 }
                 break;

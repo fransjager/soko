@@ -6,7 +6,7 @@ class CoordinatePool {
 
     CoordinatePool(int initialsize) {
         pool = new LinkedList<>();
-        for(int i = 0; i < initialsize; i++) {
+        for (int i = 0; i < initialsize; i++) {
             pool.add(new Coordinate());
         }
     }
@@ -19,7 +19,7 @@ class CoordinatePool {
     }
 
     private void expand(int size) {
-        for(int i = 0; i < size; i++) {
+        for (int i = 0; i < size; i++) {
             pool.add(new Coordinate());
         }
     }

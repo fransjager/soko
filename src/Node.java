@@ -1,4 +1,3 @@
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,6 +22,6 @@ public class Node {
 
     @Override
     public boolean equals(Object obj) {
-        return obj instanceof Node ? hashCode() == ((Node)obj).hashCode() : false;
+        return obj instanceof Node ? hashCode() == ((Node) obj).hashCode() : false;
     }
 }

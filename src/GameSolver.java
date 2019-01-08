@@ -11,7 +11,7 @@ public class GameSolver {
     public String solve() {
         long start = 0;
 
-            Search choice = Search.IDA_STAR;
+        Search choice = Search.IDA_STAR;
 
         Node solved;
         Algorithm algorithm;
@@ -64,7 +64,7 @@ public class GameSolver {
     protected String getSolution(Node node) {
         StringBuilder stringBuilder = new StringBuilder();
         Node currentNode = node;
-        while(currentNode.parent != null) {
+        while (currentNode.parent != null) {
             stringBuilder.append(currentNode.state.move);
             stringBuilder.append(" ");
             currentNode = currentNode.parent;
